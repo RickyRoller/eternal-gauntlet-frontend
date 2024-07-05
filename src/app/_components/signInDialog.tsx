@@ -1,7 +1,8 @@
-import { GameShiftService } from "@/services/gameShift";
+import { GameShiftService } from "@/app/_services/gameShift";
 import { Dialog, Button, Flex, TextField, Text } from "@radix-ui/themes";
 import { useState } from "react";
 import { useCreateUserMutation } from "../_queries/useCreateUserMutation";
+import { useQueryClient } from "@tanstack/react-query";
 
 const service = new GameShiftService();
 
@@ -10,14 +11,16 @@ export const SignInDialog = () => {
   const [open, setOpen] = useState(false);
 
   const { mutate } = useCreateUserMutation();
+  const queryClient = useQueryClient();
 
   const handleSignIn = () => {
     const isValid = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.exec(email);
     if (!email || !isValid) return;
     mutate(email, {
       onSuccess: (d) => {
-        console.log(d);
         setOpen(false);
+        queryClient.setQueryData(["user-cache"], d);
+        queryClient.invalidateQueries({ queryKey: ["user"] });
       },
     });
   };

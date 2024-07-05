@@ -1,4 +1,4 @@
-import { GameShiftService } from "@/services/gameShift";
+import { GameShiftService } from "@/app/_services/gameShift";
 
 export const runtime = "edge";
 
@@ -7,7 +7,17 @@ const service = new GameShiftService();
 export async function POST(request: Request) {
   const body = await request.json();
   const userEmail = body.email;
-  console.log(userEmail);
+
+  const allUsers = await service.fetchAllUsers();
+
+  const userExists = allUsers.data.find(
+    (user: any) => user.email === userEmail,
+  );
+  if (userExists) {
+    return Response.json(userExists, {
+      status: 200,
+    });
+  }
 
   try {
     const data = await service.createUser(userEmail);
@@ -16,7 +26,6 @@ export async function POST(request: Request) {
       status: 200,
     });
   } catch (e) {
-    console.log(e);
     return Response.error();
   }
 }

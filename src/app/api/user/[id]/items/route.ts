@@ -1,4 +1,4 @@
-import { GameShiftService } from "@/services/gameShift";
+import { GameShiftService } from "@/app/_services/gameShift";
 
 const service = new GameShiftService();
 

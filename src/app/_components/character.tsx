@@ -1,31 +1,33 @@
 import { Box } from "@radix-ui/themes";
 import "./character-styles.css";
-
-type Heroes = Record<string, string>;
-const heroes: Heroes = {
-  doc: "doc/doc_idle_anim_f0",
-  "dwarf-f": "dwarf/f/dwarf_f_idle_anim_f0",
-  "dwarf-m": "dwarf/m/dwarf_m_idle_anim_f0",
-  "elf-f": "elf/f/elf_f_idle_anim_f0",
-  "elf-m": "elf/m/elf_m_idle_anim_f0",
-  "knight-f": "knight/f/knight_f_idle_anim_f0",
-  "knight-m": "knight/m/knight_m_idle_anim_f0",
-  "lizard-f": "lizard/f/lizard_f_idle_anim_f0",
-  "lizard-m": "lizard/m/lizard_m_idle_anim_f0",
-  "wizzard-f": "wizard/f/wizzard_f_idle_anim_f0",
-  "wizzard-m": "wizard/m/wizzard_m_idle_anim_f0",
-};
+import { getHeroImage } from "../utils/getHeroImage";
+import { Heroes } from "../types/heroes";
+import cx from "classnames";
 
 interface CharacterProps {
-  hero: string;
+  hero: Heroes;
+  availableHeroes: Heroes[];
+  active: boolean;
+  onClick: (hero: Heroes) => void;
 }
 
-export const Character = ({ hero }: CharacterProps) => {
-  const heroImage = heroes[hero];
+export const Character = ({
+  hero,
+  availableHeroes,
+  active,
+  onClick,
+}: CharacterProps) => {
+  const heroImage = getHeroImage(hero);
 
   return (
-    <Box className="character">
-      <img src={`/assets/heroes/${heroImage}.png`} width="24px" />
+    <Box
+      onClick={() => onClick(hero)}
+      className={cx("character", {
+        locked: !availableHeroes.includes(hero),
+        active,
+      })}
+    >
+      <img src={heroImage} width="24px" />
     </Box>
   );
 };

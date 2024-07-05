@@ -1,0 +1,9 @@
+.mint-character {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mint-character img {
+  height: 48px;
+}
