@@ -24,6 +24,7 @@ export default function RootLayout({
           {children}
 
           <Script
+            id="audio"
             dangerouslySetInnerHTML={{
               __html: `
                 // the following function keeps track of all AudioContexts and resumes them on the first user
