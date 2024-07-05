@@ -1,7 +1,7 @@
 import { useGetUserItems } from "../_queries/useGetUserItems";
 import { useGetUser } from "../_queries/userGetUser";
 
-export const userUserHeroes = () => {
+export const useUserHeroes = () => {
   const { data: user } = useGetUser();
   const { data: userItems } = useGetUserItems(
     user?.referenceId ?? "",

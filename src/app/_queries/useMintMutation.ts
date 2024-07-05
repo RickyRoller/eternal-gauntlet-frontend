@@ -1,10 +1,10 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { getRandomHero } from "../utils/getRandomHero";
-import { userUserHeroes } from "../_hooks/useUserHeroes";
+import { useUserHeroes } from "../_hooks/useUserHeroes";
 
 export const useMintMutation = () => {
   const queryClient = useQueryClient();
-  const userHeroes = userUserHeroes();
+  const userHeroes = useUserHeroes();
 
   return useMutation({
     mutationFn: async (userId: string) => {

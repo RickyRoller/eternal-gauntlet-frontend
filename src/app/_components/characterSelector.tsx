@@ -2,14 +2,14 @@ import { Box, Flex, Text } from "@radix-ui/themes";
 import { Character } from "./character";
 import { SignInDialog } from "./signInDialog";
 import { useGetUser } from "../_queries/userGetUser";
-import { userUserHeroes } from "../_hooks/useUserHeroes";
+import { useUserHeroes } from "../_hooks/useUserHeroes";
 import { send_message_to_bevy } from "../../../public/eternal-gauntlet";
 import { Heroes } from "../types/heroes";
 import { useEffect, useState } from "react";
 
 export const CharacterSelector = () => {
   const { data: user } = useGetUser();
-  const userHeroes = userUserHeroes();
+  const userHeroes = useUserHeroes();
 
   const [activeHero, setActiveHero] = useState<Heroes>("wizzard-m");
 
