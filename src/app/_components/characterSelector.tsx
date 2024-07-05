@@ -100,7 +100,7 @@ export const CharacterSelector = () => {
         <Text as="div" color="violet">
           {user
             ? "Connected! Play to earn new heroes"
-            : "Connect to GameShift to earn new heroes"}
+            : "Connect to earn new heroes"}
         </Text>
         {!user && (
           <Box mt="1">
