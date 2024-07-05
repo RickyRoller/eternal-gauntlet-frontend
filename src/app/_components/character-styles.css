@@ -1,0 +1,8 @@
+.character {
+  padding: 0px 16px;
+  border: 1px solid lightblue;
+}
+
+.character.locked {
+  opacity: 0.7;
+}
