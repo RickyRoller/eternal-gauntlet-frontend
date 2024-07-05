@@ -6,7 +6,7 @@ import { MinusIcon } from "@radix-ui/react-icons";
 import "./score-handler-styles.css";
 import { MintCharacter } from "./mintCharacter";
 
-const WINNING_SCORE = 3;
+const WINNING_SCORE = 2000;
 
 export const ScoreHandler = () => {
   const [score, setScore] = useState(0);
