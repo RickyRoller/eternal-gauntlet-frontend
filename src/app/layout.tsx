@@ -25,7 +25,7 @@ export default function RootLayout({
         <Theme appearance="dark">
           <main className={styles.main}>{children}</main>
 
-          <Script strategy="beforeInteractive">
+          <Script strategy="beforeInteractive" id="audio-script">
             {`
                 // the following function keeps track of all AudioContexts and resumes them on the first user
                 // interaction with the page. If the function is called and all contexts are already running,
@@ -89,17 +89,6 @@ export default function RootLayout({
                 })();
               `}
           </Script>
-
-          {/* <Script type="module">
-            {`
-              import init from "/eternal-gauntlet.js";
-              setTimeout(() => {
-                init().then(() => {
-                  console.log("loaded wasm-bindgen");
-                });
-              }, 1000);
-            `}
-          </Script> */}
         </Theme>
       </body>
     </html>
