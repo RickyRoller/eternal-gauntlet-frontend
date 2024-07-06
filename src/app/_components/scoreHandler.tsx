@@ -1,3 +1,5 @@
+"use client";
+
 import { Box, Button, Dialog, Flex } from "@radix-ui/themes";
 import { useEffect, useState } from "react";
 import { useGetUser } from "../_queries/userGetUser";

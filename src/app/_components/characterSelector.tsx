@@ -1,3 +1,5 @@
+"use client";
+
 import { Box, Flex, Text } from "@radix-ui/themes";
 import { Character } from "./character";
 import { SignInDialog } from "./signInDialog";

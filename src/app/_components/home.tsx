@@ -3,15 +3,26 @@
 import { Box } from "@radix-ui/themes";
 import { CharacterSelector } from "./characterSelector";
 import { ScoreHandler } from "./scoreHandler";
+import { ReactElement } from "react";
+import { ReactQueryProvider } from "./reactQueryProvider";
+import init from "../../../public/eternal-gauntlet";
 
-export const Home = () => {
+init();
+
+interface HomeProps {
+  canvas: ReactElement;
+}
+
+export const Home = ({ canvas }: HomeProps) => {
   return (
-    <Box>
-      <ScoreHandler />
-      <Box width="1279px" my="4">
-        <CharacterSelector />
+    <ReactQueryProvider>
+      <Box>
+        <ScoreHandler />
+        <Box width="1279px" my="4">
+          <CharacterSelector />
+        </Box>
+        {canvas}
       </Box>
-      <canvas id="game-canvas" width="1200px" height="700px" />
-    </Box>
+    </ReactQueryProvider>
   );
 };
